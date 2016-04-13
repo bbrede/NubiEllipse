@@ -2,6 +2,14 @@
 #' 
 #' Wrapper for atmospheric radiative transfer model Streamer
 #' 
+#' @param dateTime POSIX with DateTime (any time zone possible)
+#' @param NubiScopePosition SPDF representing position of NubiScope (1 point)
+#' @param inpFile inpFile filename
+#' @param desFile desFile filename
+#' @param overwrite Overwrite inp and desFiles if they already exist?
+#' @param atmosphere Named list with atmospheric profiles and/or column values (created with makeAtmosphere)
+#' @param streamerPath File path to Streamer executable
+#' 
 #' @return Numeric vector with modeled clear sky radiances
 #' 
 #' @references \link{http://stratus.ssec.wisc.edu/streamer/streamer.html}
@@ -14,13 +22,13 @@
 #' @import lubridate
 
 
-runStreamer <- function(dateTime, # POSIX
-                        location, # SpatialPointsDataFrame
-                        inpFile, # Chr
-                        desFile, # Chr  
-                        overwrite = FALSE, # overwrite inp files?
-                        atmosphere, # atmospheric profiles & column values as a named list
-                        streamerPath, # Chr
+runStreamer <- function(dateTime, 
+                        location, 
+                        inpFile, 
+                        desFile,
+                        overwrite = FALSE, 
+                        atmosphere,
+                        streamerPath, 
                         cloudFile = NULL,
                         clouds = NULL,
                         nover = NULL,
